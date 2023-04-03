@@ -17,7 +17,7 @@ void monty_pint(stack_t **stack, unsigned int line_number)
 /**
  * monty_swap - Swaps two stack positions
  * @stack: pointer to top node
- * @line_number - wokring line number
+ * @line_number - working line number
  */
 void monty_swap(stack_t **stack, unsigned int line_number)
 {
