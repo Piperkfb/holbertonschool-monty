@@ -1,4 +1,4 @@
-#include "monty.h"
+#include "monty_head.h"
 
 int value;
 /**
@@ -24,11 +24,11 @@ stack_t *new_Node(int n)
 }
 
 /**
- * _push - push item
+ * monty_push - push item
  * @stack: is a parameter
  * @line_number: is value
  */
-void _push(stack_t **stack, unsigned int line_number)
+void monty_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new = NULL;
 	(void)line_number;
@@ -42,12 +42,12 @@ void _push(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _pall - print elements stack
+ * monty_pall - print elements stack
  * @stack: is a parameter
  * @n: is value
  * Return: nothing
  */
-void _pall(stack_t **stack, unsigned int n)
+void monty_pall(stack_t **stack, unsigned int n)
 {
 	stack_t *current = NULL;
 	(void)n;
@@ -59,5 +59,49 @@ void _pall(stack_t **stack, unsigned int n)
 		dprintf(STDOUT_FILENO, "%d\n", current->n);
 		current = current->next;
 	}
+}
+/**
+ * monty_pop - removes the top element of the stack.
+ * @stack: Stack list
+ * @line_number: Number of the line
+ */
+void monty_pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = NULL;
+
+	if (*stack == NULL || stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		cleanStack(stack);
+		exit(EXIT_FAILURE);
+	}
+
+	current = *stack;
+
+	*stack = current->next;
+	if (current->next != NULL)
+		current->next->prev = current->prev;
+	free(current);
+}
+/**
+ * monty_add - function add two integer
+ * @stack: Stack list
+ * @line_number: Number of the line
+ */
+void monty_add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = NULL;
+	int sum = 0;
+
+	if (!*stack || !(*stack)->next)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		cleanStack(stack);
+		exit(EXIT_FAILURE);
+	}
+	current = *stack;
+	sum = current->n + current->next->n;
+	current->next->n = sum;
+	monty_pop(stack, line_number);
 }
 
