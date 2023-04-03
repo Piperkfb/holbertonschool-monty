@@ -1,4 +1,4 @@
-#include "monty_head.h"
+#include "monty.h"
 /**
  * monty_pint - prints top valul of stack
  * @stack: pointer to top node

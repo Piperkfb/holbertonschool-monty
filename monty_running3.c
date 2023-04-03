@@ -1,4 +1,4 @@
-#include "monty_head.h"
+#include "monty.h"
 
 int is_delim(char ch, char *delims);
 int get_word_length(char *str, char *delims);

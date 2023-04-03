@@ -1,4 +1,4 @@
-#include "monty_head.h"
+#include "monty.h"
 #include <string.h>
 
 /**
